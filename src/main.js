@@ -1,6 +1,8 @@
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
 
+const scoreHolder = document.querySelector("#score");
+
 const gridSize = 20;
 
 let tileSize, food, snake, dx, dy, turning, score;
@@ -61,18 +63,20 @@ const mainLoop = () => {
 
   turning = false;
 
-  if (
-    head.x < 0 ||
-    head.x > gridSize - 1 ||
-    head.y < 0 ||
-    head.y > gridSize - 1
-  )
-    return;
+  const hitWall =
+    head.x < 0 || head.x > gridSize - 1 || head.y < 0 || head.y > gridSize - 1;
+
+  if (hitWall) return;
+
+  for (let i = 0; i < snake.length; i++) {
+    if (head.x === snake[i].x && head.y === snake[i].y) return;
+  }
 
   snake.unshift(head);
 
   if (head.x === food.x && head.y === food.y) {
     score++;
+    scoreHolder.innerHTML = `Score: ${score}`;
 
     food = {
       x: random(gridSize - 1),
