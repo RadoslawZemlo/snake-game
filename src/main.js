@@ -39,38 +39,40 @@ const drawGame = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   // DRAW FOOD
-  ctx.fillStyle = foodColor;
-  ctx.fillRect(food.x * tileSize, food.y * tileSize, tileSize, tileSize);
-
-  ctx.strokeStyle = stroke;
-  ctx.strokeRect(food.x * tileSize, food.y * tileSize, tileSize, tileSize);
+  drawTile(food.x, food.y, foodColor, stroke);
 
   // DRAW SNAKE
   snake.forEach(part => {
-    ctx.fillStyle = snakeColor;
-    ctx.fillRect(part.x * tileSize, part.y * tileSize, tileSize, tileSize);
-
-    ctx.strokeStyle = stroke;
-    ctx.strokeRect(part.x * tileSize, part.y * tileSize, tileSize, tileSize);
+    drawTile(snake.x, snake.y, snakeColor, stroke);
   });
 };
 
+const drawTile = (x, y, color, stroke) => {
+  ctx.fillStyle = color;
+  ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+
+  ctx.strokeStyle = stroke;
+  ctx.strokeRect(x * tileSize, y * tileSize, tileSize, tileSize);
+};
+
 const mainLoop = () => {
+  turning = false;
+
   const head = {
     x: snake[0].x + dx,
     y: snake[0].y + dy
   };
 
-  turning = false;
+  // turning = false;
 
   const hitWall =
     head.x < 0 || head.x > gridSize - 1 || head.y < 0 || head.y > gridSize - 1;
 
   if (hitWall) return;
 
-  for (let i = 0; i < snake.length; i++) {
-    if (head.x === snake[i].x && head.y === snake[i].y) return;
-  }
+  snake.forEach(part => {
+    if (head.x === part.x && head.y === part.y) return;
+  });
 
   snake.unshift(head);
 
