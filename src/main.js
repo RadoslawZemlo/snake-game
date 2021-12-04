@@ -1,6 +1,7 @@
 import showScreen from "./showScreen.js";
 import { setSpeed, setWall } from "./settings.js";
 import drawGame from "./drawGame.js";
+import generateFood from "./generateFood.js";
 
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
@@ -45,10 +46,6 @@ const turn = key => {
   }
 };
 
-const random = max => {
-  return Math.floor(Math.random() * (max + 1));
-};
-
 const mainLoop = () => {
   turning = false;
 
@@ -85,10 +82,7 @@ const mainLoop = () => {
     score++;
     scoreHolder.innerHTML = `Score: ${score}`;
 
-    food = {
-      x: random(gridSize - 1),
-      y: random(gridSize - 1)
-    };
+    food = generateFood(gridSize);
   } else {
     snake.pop();
   }
@@ -101,10 +95,7 @@ const mainLoop = () => {
 const newGame = () => {
   tileSize = canvas.width / gridSize;
 
-  food = {
-    x: random(gridSize - 1),
-    y: random(gridSize - 1)
-  };
+  food = generateFood(gridSize);
 
   snake = [];
 
