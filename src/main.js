@@ -1,5 +1,6 @@
 import showScreen from "./showScreen.js";
 import { setSpeed, setWall } from "./settings.js";
+import drawGame from "./drawGame.js";
 
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
@@ -48,28 +49,6 @@ const random = max => {
   return Math.floor(Math.random() * (max + 1));
 };
 
-const drawGame = () => {
-  const [foodColor, snakeColor, stroke] = ["#c80e00", "#ffffff", "#555555"];
-
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  // DRAW FOOD
-  drawTile(food.x, food.y, foodColor, stroke);
-
-  // DRAW SNAKE
-  snake.forEach(part => {
-    drawTile(part.x, part.y, snakeColor, stroke);
-  });
-};
-
-const drawTile = (x, y, color, stroke) => {
-  ctx.fillStyle = color;
-  ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
-
-  ctx.strokeStyle = stroke;
-  ctx.strokeRect(x * tileSize, y * tileSize, tileSize, tileSize);
-};
-
 const mainLoop = () => {
   turning = false;
 
@@ -114,7 +93,7 @@ const mainLoop = () => {
     snake.pop();
   }
 
-  drawGame();
+  drawGame(ctx, food, snake, tileSize);
 
   setTimeout(mainLoop, speed);
 };
