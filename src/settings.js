@@ -1,3 +1,8 @@
+const setGrid = gridValue => {
+  const gridSize = gridValue;
+  return gridSize;
+};
+
 const setSpeed = speedValue => {
   const speed = speedValue;
   return speed;
@@ -13,4 +18,4 @@ const setWall = wallValue => {
   return wall;
 };
 
-export { setSpeed, setWall };
+export { setGrid, setSpeed, setWall };

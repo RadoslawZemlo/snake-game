@@ -1,5 +1,5 @@
 import showScreen from "./showScreen.js";
-import { setSpeed, setWall } from "./settings.js";
+import { setGrid, setSpeed, setWall } from "./settings.js";
 import { wallsOn, wallsOff } from "./walls.js";
 import generateFood from "./generateFood.js";
 import initSnake from "./initSnake.js";
@@ -20,14 +20,13 @@ const newGameBtn = document.querySelectorAll(".newgame-btn");
 const settingsBtn = document.querySelectorAll(".settings-btn");
 
 // INPUTS - RADIO
+const gridSettings = document.getElementsByName("grid");
 const speedSettings = document.getElementsByName("speed");
 const wallSettings = document.getElementsByName("wall");
 
 const scoreHolder = document.querySelector("#score");
 
-const gridSize = 20;
-
-let tileSize, food, snake, dx, dy, turning, speed, wall, score;
+let gridSize, tileSize, food, snake, dx, dy, turning, speed, wall, score;
 
 const turn = key => {
   if (turning) return;
@@ -99,6 +98,9 @@ const newGame = () => {
 };
 
 const defaultSettings = () => {
+  gridSettings[0].checked = true;
+  gridSize = setGrid(parseInt(gridSettings[0].value));
+
   speedSettings[0].checked = true;
   speed = setSpeed(parseInt(speedSettings[0].value));
 
@@ -119,6 +121,12 @@ const init = () => {
   );
 
   // SETTINGS INPUTS
+  gridSettings.forEach(setting => {
+    setting.addEventListener("click", () => {
+      if (setting.checked) gridSize = setGrid(parseInt(setting.value));
+    });
+  });
+
   speedSettings.forEach(setting => {
     setting.addEventListener("click", () => {
       if (setting.checked) speed = setSpeed(parseInt(setting.value));
