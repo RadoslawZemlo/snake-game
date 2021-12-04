@@ -16,7 +16,7 @@ header {
 canvas {
   display: none;
   background-color: #829666;
-  border: 10px solid #999999;
+  border: 10px solid #bcbcbc;
 }
 
 canvas:focus {

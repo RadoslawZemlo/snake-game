@@ -1,5 +1,5 @@
 import showScreen from "./showScreen.js";
-import { setSpeed } from "./settings.js";
+import { setSpeed, setWall } from "./settings.js";
 
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
@@ -20,7 +20,7 @@ const scoreHolder = document.querySelector("#score");
 
 const gridSize = 20;
 
-let tileSize, food, snake, dx, dy, turning, speed, score;
+let tileSize, food, snake, dx, dy, turning, speed, wall, score;
 
 const turn = key => {
   if (turning) return;
@@ -81,7 +81,19 @@ const mainLoop = () => {
   const hitWall =
     head.x < 0 || head.x > gridSize - 1 || head.y < 0 || head.y > gridSize - 1;
 
-  if (hitWall) return;
+  if (wall === 0) {
+    if (hitWall) return;
+  } else if (wall === 1) {
+    if (head.x < 0) {
+      head.x = gridSize - 1;
+    } else if (head.x > gridSize - 1) {
+      head.x = 0;
+    } else if (head.y < 0) {
+      head.y = gridSize - 1;
+    } else if (head.y > gridSize - 1) {
+      head.y = 0;
+    }
+  }
 
   for (let i = 0; i < snake.length; i++) {
     if (head.x === snake[i].x && head.y === snake[i].y) return;
@@ -137,6 +149,9 @@ const newGame = () => {
 const defaultSettings = () => {
   speedSettings[0].checked = true;
   speed = setSpeed(parseInt(speedSettings[0].value));
+
+  wallSettings[0].checked = true;
+  wall = setWall(parseInt(wallSettings[0].value));
 };
 
 const init = () => {
@@ -155,6 +170,12 @@ const init = () => {
   speedSettings.forEach(setting => {
     setting.addEventListener("click", () => {
       if (setting.checked) speed = setSpeed(parseInt(setting.value));
+    });
+  });
+
+  wallSettings.forEach(setting => {
+    setting.addEventListener("click", () => {
+      if (setting.checked) wall = setWall(parseInt(setting.value));
     });
   });
 };
