@@ -1,6 +1,19 @@
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
 
+const menu = document.querySelector("#menu");
+const gameOver = document.querySelector("#gameover");
+const settings = document.querySelector("#setting");
+
+// BUTTONS
+const newGameBtn = document.querySelectorAll(".newgame-button");
+const settingsBtn = document.querySelectorAll(".settings-button");
+
+// INPUTS - RADIO
+const gridSettings = document.getElementsByName("grid");
+const speedSettings = document.getElementsByName("speed");
+const wallSettings = document.getElementsByName("wall");
+
 const scoreHolder = document.querySelector("#score");
 
 const gridSize = 20;

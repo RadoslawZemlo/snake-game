@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: #000000;
+}
+
 header {
   width: 420px;
   padding: 10px;
@@ -11,5 +15,82 @@ header {
 
 canvas {
   background-color: #829666;
-  border: 10px solid #000;
+  border: 10px solid #999999;
+}
+
+canvas:focus {
+  outline: none;
+}
+
+/* HEADER STYLES */
+h1 {
+  display: inline-block;
+  width: 180px;
+  font-size: 21px;
+  color: #ffffff;
+}
+
+#score {
+  display: inline-block;
+  width: 200px;
+  font-size: 15px;
+  color: #ffffff;
+  text-align: right;
+}
+
+/* Menu Screen Style */
+#menu {
+  display: block;
+  width: 420px;
+  height: 420px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+  color: #fff;
+}
+
+.button {
+  margin: 12px;
+  font-size: 24px;
+  padding: 6px;
+}
+
+/* Settings Screen Style */
+#setting,
+#game-over {
+  display: none;
+  width: 420px;
+  height: 420px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-size: 30px;
+  color: #fff;
+  text-align: center;
+}
+
+#setting h2,
+#game-over h2 {
+  margin: 36px 30px;
+  font-size: 36px;
+}
+
+#setting p,
+#game-over p {
+  margin: 21px;
+  font-size: 15px;
+  padding: 5px;
+}
+
+#setting input {
+  display: none;
+}
+
+#setting label {
+  cursor: pointer;
+  padding: 3px;
+}
+
+#setting input:checked + label {
+  background-color: #fff;
+  color: #000;
 }

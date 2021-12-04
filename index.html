@@ -15,6 +15,55 @@
 
     <canvas id="canvas" width="400" height="400" tabindex="1"></canvas>
 
+    <!-- MAIN MENU SCREEN -->
+    <div id="menu">
+      <h2>Snake</h2>
+
+      <button class="button newgame-btn">new game</button>
+      <button class="button settings-btn">settings</button>
+    </div>
+
+    <!-- SETTINGS SCREEN -->
+    <div id="setting">
+      <h2>Settings</h2>
+
+      <button class="button newgame-btn">new game</button>
+
+      <p>
+        Speed:
+        <input id="speed1" type="radio" name="speed" value="120" checked />
+        <label for="speed1">Slow</label>
+
+        <input id="speed2" type="radio" name="speed" value="90" />
+        <label for="speed2">Normal</label>
+
+        <input id="speed3" type="radio" name="speed" value="60" />
+        <label for="speed3">Fast</label>
+      </p>
+
+      <p>
+        Wall:
+        <input id="wall-on" type="radio" name="wall" value="0" checked />
+        <label for="wall-on">On</label>
+
+        <input id="wall-off" type="radio" name="wall" value="1" />
+        <label for="wall-off">Off</label>
+      </p>
+    </div>
+
+    <!-- GAME OVER SCREEN -->
+    <div id="game-over">
+      <h2>Game Over</h2>
+      <p>
+        press
+        <span style="background-color: #ffffff; color: #000000">space</span>
+        to begin a
+      </p>
+
+      <button class="button newgame-button">new game</button>
+      <button class="button settings-button">settings</button>
+    </div>
+
     <script src="./src/main.js"></script>
   </body>
 </html>
