@@ -82,7 +82,7 @@ const mainLoop = () => {
     head.x < 0 || head.x > gridSize - 1 || head.y < 0 || head.y > gridSize - 1;
 
   if (wall === 0) {
-    if (hitWall) return;
+    if (hitWall) return showScreen(canvas, menu, settings, gameOver, 3);
   } else if (wall === 1) {
     if (head.x < 0) {
       head.x = gridSize - 1;
@@ -96,7 +96,8 @@ const mainLoop = () => {
   }
 
   for (let i = 0; i < snake.length; i++) {
-    if (head.x === snake[i].x && head.y === snake[i].y) return;
+    if (head.x === snake[i].x && head.y === snake[i].y)
+      return showScreen(canvas, menu, settings, gameOver, 3);
   }
 
   snake.unshift(head);
@@ -177,6 +178,14 @@ const init = () => {
     setting.addEventListener("click", () => {
       if (setting.checked) wall = setWall(parseInt(setting.value));
     });
+  });
+
+  document.addEventListener("keydown", e => {
+    if (gameOver.style.display === "block") {
+      if (e.defaultPrevented) return;
+
+      if (e.key === " ") newGame();
+    }
   });
 };
 
