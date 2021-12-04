@@ -1,7 +1,8 @@
 import showScreen from "./showScreen.js";
 import { setSpeed, setWall } from "./settings.js";
-import drawGame from "./drawGame.js";
 import generateFood from "./generateFood.js";
+import drawGame from "./drawGame.js";
+import { left, up, right, down } from "./movingDirection.js";
 
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
@@ -28,20 +29,13 @@ const turn = key => {
   if (turning) return;
   turning = true;
 
-  const [movingLeft, movingUp, movingRigth, movingDown] = [
-    dx === -1,
-    dy === -1,
-    dx === 1,
-    dy === 1
-  ];
-
-  if ((key === "ArrowLeft" || key === "a") && !movingRigth) {
+  if ((key === "ArrowLeft" || key === "a") && !right(dx)) {
     [dx, dy] = [-1, 0];
-  } else if ((key === "ArrowUp" || key === "w") && !movingDown) {
+  } else if ((key === "ArrowUp" || key === "w") && !down(dy)) {
     [dx, dy] = [0, -1];
-  } else if ((key === "ArrowRight" || key === "d") && !movingLeft) {
+  } else if ((key === "ArrowRight" || key === "d") && !left(dx)) {
     [dx, dy] = [1, 0];
-  } else if ((key === "ArrowDown" || key === "s") && !movingUp) {
+  } else if ((key === "ArrowDown" || key === "s") && !up(dy)) {
     [dx, dy] = [0, 1];
   }
 };
