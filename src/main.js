@@ -1,5 +1,6 @@
 import showScreen from "./showScreen.js";
 import { setSpeed, setWall } from "./settings.js";
+import { wallsOn, wallsOff } from "./walls.js";
 import generateFood from "./generateFood.js";
 import drawGame from "./drawGame.js";
 import { left, up, right, down } from "./movingDirection.js";
@@ -48,27 +49,18 @@ const mainLoop = () => {
     y: snake[0].y + dy
   };
 
-  const hitWall =
-    head.x < 0 || head.x > gridSize - 1 || head.y < 0 || head.y > gridSize - 1;
-
   if (wall === 0) {
-    if (hitWall) return showScreen(canvas, menu, settings, gameOver, 3);
+    if (wallsOn(head, gridSize))
+      return showScreen(canvas, menu, settings, gameOver, 3);
   } else if (wall === 1) {
-    if (head.x < 0) {
-      head.x = gridSize - 1;
-    } else if (head.x > gridSize - 1) {
-      head.x = 0;
-    } else if (head.y < 0) {
-      head.y = gridSize - 1;
-    } else if (head.y > gridSize - 1) {
-      head.y = 0;
-    }
+    wallsOff(head, gridSize);
   }
 
-  for (let i = 0; i < snake.length; i++) {
-    if (head.x === snake[i].x && head.y === snake[i].y)
+  // SELF COLLISION
+  snake.forEach(part => {
+    if (head.x === part.x && head.y === part.y)
       return showScreen(canvas, menu, settings, gameOver, 3);
-  }
+  });
 
   snake.unshift(head);
 
