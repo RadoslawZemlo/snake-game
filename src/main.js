@@ -5,6 +5,8 @@ import generateFood from "./generateFood.js";
 import initSnake from "./initSnake.js";
 import drawGame from "./drawGame.js";
 import { left, up, right, down } from "./movingDirection.js";
+import collision from "./collision.js";
+import updateScore from "./updateScore.js";
 
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
@@ -59,15 +61,14 @@ const mainLoop = () => {
 
   // SELF COLLISION
   snake.forEach(part => {
-    if (head.x === part.x && head.y === part.y)
+    if (collision(part, head))
       return showScreen(canvas, menu, settings, gameOver, 3);
   });
 
   snake.unshift(head);
 
-  if (head.x === food.x && head.y === food.y) {
-    score++;
-    scoreHolder.innerHTML = `Score: ${score}`;
+  if (collision(food, head)) {
+    score = updateScore(scoreHolder, score);
 
     food = generateFood(gridSize);
   } else {
