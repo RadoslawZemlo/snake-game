@@ -44,6 +44,11 @@ const turn = key => {
   }
 };
 
+const handleEat = () => {
+  score = updateScore(scoreHolder, score);
+  food = generateFood(gridSize);
+};
+
 const mainLoop = () => {
   turning = false;
 
@@ -66,14 +71,7 @@ const mainLoop = () => {
   });
 
   snake.unshift(head);
-
-  if (collision(food, head)) {
-    score = updateScore(scoreHolder, score);
-
-    food = generateFood(gridSize);
-  } else {
-    snake.pop();
-  }
+  collision(food, head) ? handleEat() : snake.pop();
 
   drawGame(ctx, food, snake, tileSize);
 
