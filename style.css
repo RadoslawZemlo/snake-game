@@ -14,6 +14,7 @@ header {
 }
 
 canvas {
+  display: none;
   background-color: #829666;
   border: 10px solid #999999;
 }

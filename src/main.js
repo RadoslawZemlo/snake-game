@@ -1,13 +1,15 @@
+import showScreen from "./showScreen.js";
+
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
 
 const menu = document.querySelector("#menu");
-const gameOver = document.querySelector("#gameover");
+const gameOver = document.querySelector("#game-over");
 const settings = document.querySelector("#setting");
 
 // BUTTONS
-const newGameBtn = document.querySelectorAll(".newgame-button");
-const settingsBtn = document.querySelectorAll(".settings-button");
+const newGameBtn = document.querySelectorAll(".newgame-btn");
+const settingsBtn = document.querySelectorAll(".settings-btn");
 
 // INPUTS - RADIO
 const gridSettings = document.getElementsByName("grid");
@@ -121,6 +123,7 @@ const newGame = () => {
   [dx, dy] = [1, 0];
   score = 0;
 
+  showScreen(canvas, menu, settings, gameOver, 0);
   canvas.focus();
 
   canvas.addEventListener("keydown", e => {
@@ -131,4 +134,15 @@ const newGame = () => {
   mainLoop();
 };
 
-newGame();
+const init = () => {
+  // CLICK EVENTS
+  newGameBtn.forEach(btn => btn.addEventListener("click", () => newGame()));
+
+  settingsBtn.forEach(btn =>
+    btn.addEventListener("click", () =>
+      showScreen(canvas, menu, settings, gameOver, 2)
+    )
+  );
+};
+
+init();
