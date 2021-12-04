@@ -2,6 +2,7 @@ import showScreen from "./showScreen.js";
 import { setSpeed, setWall } from "./settings.js";
 import { wallsOn, wallsOff } from "./walls.js";
 import generateFood from "./generateFood.js";
+import initSnake from "./initSnake.js";
 import drawGame from "./drawGame.js";
 import { left, up, right, down } from "./movingDirection.js";
 
@@ -82,12 +83,7 @@ const newGame = () => {
   tileSize = canvas.width / gridSize;
 
   food = generateFood(gridSize);
-
-  snake = [];
-
-  for (let i = 0; i < 5; i++) {
-    snake.push({ x: gridSize / 2 - i, y: gridSize / 2 });
-  }
+  snake = initSnake(gridSize);
 
   [dx, dy] = [1, 0];
   score = 0;
