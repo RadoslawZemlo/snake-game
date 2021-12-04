@@ -1,4 +1,5 @@
 import showScreen from "./showScreen.js";
+import { setSpeed } from "./settings.js";
 
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
@@ -12,7 +13,6 @@ const newGameBtn = document.querySelectorAll(".newgame-btn");
 const settingsBtn = document.querySelectorAll(".settings-btn");
 
 // INPUTS - RADIO
-const gridSettings = document.getElementsByName("grid");
 const speedSettings = document.getElementsByName("speed");
 const wallSettings = document.getElementsByName("wall");
 
@@ -20,7 +20,7 @@ const scoreHolder = document.querySelector("#score");
 
 const gridSize = 20;
 
-let tileSize, food, snake, dx, dy, turning, score;
+let tileSize, food, snake, dx, dy, turning, speed, score;
 
 const turn = key => {
   if (turning) return;
@@ -103,7 +103,7 @@ const mainLoop = () => {
 
   drawGame();
 
-  setTimeout(mainLoop, 120);
+  setTimeout(mainLoop, speed);
 };
 
 const newGame = () => {
@@ -134,7 +134,14 @@ const newGame = () => {
   mainLoop();
 };
 
+const defaultSettings = () => {
+  speedSettings[0].checked = true;
+  speed = setSpeed(parseInt(speedSettings[0].value));
+};
+
 const init = () => {
+  defaultSettings();
+
   // CLICK EVENTS
   newGameBtn.forEach(btn => btn.addEventListener("click", () => newGame()));
 
@@ -143,6 +150,13 @@ const init = () => {
       showScreen(canvas, menu, settings, gameOver, 2)
     )
   );
+
+  // SETTINGS INPUTS
+  speedSettings.forEach(setting => {
+    setting.addEventListener("click", () => {
+      if (setting.checked) speed = setSpeed(parseInt(setting.value));
+    });
+  });
 };
 
 init();
