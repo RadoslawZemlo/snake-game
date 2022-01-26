@@ -85,6 +85,7 @@ const newGame = () => {
 
   [dx, dy] = [1, 0];
   score = 0;
+  scoreHolder.innerHTML = `Score: ${score}`;
 
   showScreen(canvas, menu, settings, gameOver, 0);
   canvas.focus();
