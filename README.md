@@ -15,11 +15,14 @@ Snake Game is a single player 2D-game written in pure JavaScript rendered on HTM
 
 The aim of the project was to learn and consolidate knowledge about JavaScript and ES6 syntax.
 
+Check demo of the game deployed on github pages:
+https://radoslawzemlo.github.io/snake-game/
+
 ### Screenshots
 
-<img width="450" alt="snake-menu" src="https://user-images.githubusercontent.com/95445412/151260272-b9d6b19b-cc71-47a4-8a00-13176c294927.png"> <img width="450" alt="snake-settings" src="https://user-images.githubusercontent.com/95445412/151224350-cb45ca27-b47d-4633-abc6-2194747acf80.png">
+<img width="350" alt="snake-menu" src="https://user-images.githubusercontent.com/95445412/151260272-b9d6b19b-cc71-47a4-8a00-13176c294927.png"> <img width="350" alt="snake-settings" src="https://user-images.githubusercontent.com/95445412/151224350-cb45ca27-b47d-4633-abc6-2194747acf80.png">
 <br/>
-<img width="450" alt="snake-game" src="https://user-images.githubusercontent.com/95445412/151224375-15f25fee-950a-4e1c-82cf-4a1dfa63e058.png"> <img width="450" alt="snake-game-over" src="https://user-images.githubusercontent.com/95445412/151224386-64957521-0fec-40cf-814e-8a8a03e72327.png">
+<img width="350" alt="snake-game" src="https://user-images.githubusercontent.com/95445412/151224375-15f25fee-950a-4e1c-82cf-4a1dfa63e058.png"> <img width="350" alt="snake-game-over" src="https://user-images.githubusercontent.com/95445412/151224386-64957521-0fec-40cf-814e-8a8a03e72327.png">
 
 ## Features
 
